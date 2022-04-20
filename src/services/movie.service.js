@@ -5,23 +5,23 @@ const movies = [
     sinopse:
       'Durante a Segunda Guerra, na crucial Batalha do Rio Escalda, três vidas totalmente diferentes se cruzam e cada um vê o conflito sob perspectivas diferentes.',
     img: './assets/img/abatalhaesquecida.jpg',
-    ano: 10.0,
+    ano: 2020,
   },
   {
     id: 2,
     titulo: 'Alerta Vermelho',
     sinopse:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
+      'Um alerta vermelho da Interpol é emitido e o agente do FBI John Hartley assume o caso. Durante sua busca, ele se vê diante de um assalto ousado e é forçado a se aliar ao maior ladrão de arte da história, Nolan Booth, para capturar a ladra de arte mais procurada do mundo atualmente, Sarah Black.',
     img: './assets/img/alertavermelho.jpg',
-    ano: 10.0,
+    ano: 2021,
   },
   {
     id: 3,
     titulo: 'Amor e Monstros',
     sinopse:
-      'Quam vulputate dignissim suspendisse in est ante in nibh mauris.',
+      'Sete anos após sobreviver ao apocalipse dos monstros, o azarado Joel Dawson decide se arriscar e abandona o seu bunker para se reencontrar com a sua ex-namorada da escola, Aimee.',
     img: './assets/img/amoremonstros.jpg',
-    ano: 7.0,
+    ano: 2020,
   },
 ];
 

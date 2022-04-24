@@ -1,63 +1,47 @@
+const mongoose = require('mongoose');
+const { validId, validObjectBody } = require('../middlewares/movie.middleware');
 const moviesService = require('../services/movie.service');
 
-const findAllMoviesController = (req, res) => {
-  const movies = moviesService.findAllMoviesService();
+const findAllMoviesController = async (req, res) => {
+  const movies =  await moviesService.findAllMoviesService();
+
+  if(movies.lenght == 0){
+    return res.status(400).send({ message: 'Não existem filmes cadastrados' })
+  }
+
   res.send(movies);
 };
 
-const findByIdMovieController = (req, res) => {
-  const idParam = Number(req.params.id);
-  if (!idParam) {
-    return res.status(404).send({ message: 'Filme não encontrado!' });
+const findByIdMovieController = async (req, res) => {
+  const idParam = req.params.id;
+
+  const chosenMovie = await moviesService.findByIdMovieService(idParam);
+
+  if(!chosenMovie) {
+    return req.status(400).send({message: 'Filme não encontrado' });
   }
-  const chosenMovie = moviesService.findByIdMovieService(idParam);
   res.send(chosenMovie);
 };
 
-const createMovieController = (req, res) => {
+const createMovieController = async (req, res) => {
   const movie = req.body;
 
-  if (!movie || !movie.titulo || !movie.sinopse || !movie.img || !movie.ano) {
-    return res.status(400).send({
-      message:
-        'Você não preencheu todos os dados para adicionar um novo filme ao catálogo!',
-    });
-  }
-
-  const newMovie = moviesService.createMovieService(movie);
-  res.send(newMovie);
+  const newMovie = await moviesService.createMovieService(movie);
+  res.status(201).send(newMovie);
 };
 
-const updateMovieController = (req, res) => {
-  const idParam = Number(req.params.id);
-
-  if (!idParam) {
-    return res.status(404).send({ message: 'Filme não encontrado!' });
-  }
+const updateMovieController = async (req, res) => {
+  const idParam = req.params.id;
   const movieEdit = req.body;
 
-  if (
-    !movieEdit ||
-    !movieEdit.titulo ||
-    !movieEdit.sinopse ||
-    !movieEdit.img ||
-    !movieEdit.ano
-  ) {
-    return res
-    .status(400)
-    .send({ message: 'Você não preencheu todos os dados para editar o filme!' });
-  }
-  const updatedMovie = moviesService.updateMovieService(idParam, movieEdit);
+  const updatedMovie= await moviesService.updateMovieService(idParam, movieEdit)
   res.send(updatedMovie);
 };
 
-const deleteMovieController = (req, res) => {
-  const idParam = Number(req.params.id);
+const deleteMovieController = async (req, res) => {
+  const idParam = req.params.id;
 
-  if (!idParam) {
-    return res.status(400).send({ message: 'Filme não encontrado!' });
-  }
-  moviesService.deleteMovieService(idParam);
+  await moviesService.deleteMovieService(idParam);
   res.send({ message: 'Filme deletado com sucesso!' });
 };
 

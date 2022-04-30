@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-function connectToDatabase() {
+export function connectToDatabase() {
   mongoose
-    .connect('mongodb://localhost:27017/movies-db', {
+    .connect('mongodb://localhost:27017/potions-db', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -13,5 +13,3 @@ function connectToDatabase() {
       return console.log(`Erro na conexão como DB: ${err}`);
     });
 }
-
-module.exports = connectToDatabase;

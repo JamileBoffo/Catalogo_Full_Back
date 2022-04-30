@@ -1,15 +1,15 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
-const router = require('./src/routes/movie.route');
+import router from './src/routes/potion.route';
 
-const port = 3000;
+const port = 3333;
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use('/movies', router);
+app.use('/potions', router);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
